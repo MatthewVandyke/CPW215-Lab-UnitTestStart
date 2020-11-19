@@ -9,6 +9,7 @@ namespace BusinessLogic
         public Course(string courseName)
         {
             CourseName = courseName;
+            InstructorName = "STAFF";
         }
 
         /// <summary>
@@ -19,12 +20,49 @@ namespace BusinessLogic
         /// <summary>
         /// The name of the course
         /// </summary>
-        public string CourseName { get; set; }
+
+        private string _courseName;
+
+        public string CourseName
+        {
+            get
+            {
+                return _courseName;
+            }
+            set 
+            { 
+                if( value == null)
+				{
+                    throw new ArgumentNullException();
+				}
+                _courseName = value;
+            }
+        }
 
         /// <summary>
         /// Number of credits for the course
         /// </summary>
-        public byte NumberOfCredits { get; set; }
+        /// 
+
+        private byte _numberOfCredits;
+
+        public byte NumberOfCredits { 
+            get
+			{
+                return _numberOfCredits;
+			}
+            set 
+            {
+                if (value > 0 && value < 30)
+				{
+                    _numberOfCredits = value;
+				}
+                else
+				{
+                    throw new ArgumentException();
+				}
+            } 
+        }
 
     }
 }
